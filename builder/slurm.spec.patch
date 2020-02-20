@@ -1,0 +1,21 @@
+--- ../slurm-19.05.5.orig/slurm.spec	2019-12-20 20:44:51.000000000 +0000
++++ slurm.spec	2020-02-20 06:04:59.402495324 +0000
+@@ -61,7 +61,7 @@
+ 
+ %{?systemd_requires}
+ BuildRequires: systemd
+-BuildRequires: munge-devel munge-libs
++BuildRequires: munge-devel
+ BuildRequires: python
+ BuildRequires: readline-devel
+ Obsoletes: slurm-lua slurm-munge slurm-plugins
+@@ -322,7 +322,8 @@
+ 	%{?_with_shared_libslurm} \
+ 	%{?_without_x11:--disable-x11} \
+ 	%{?_with_ucx} \
+-	%{?_with_cflags}
++	%{?_with_cflags} \
++        --enable-front-end
+ 
+ make %{?_smp_mflags}
+ 
