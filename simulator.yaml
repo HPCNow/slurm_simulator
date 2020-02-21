@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simulator
+spec:
+  volumes:
+  - name: simulator
+    emptyDir: {}
+  containers:
+  - name: mysql
+    image: mysql
+    volumeMounts:
+    - name: mysql
+      mountPath: /usr/share/lib
+  - name: slurmdb
+    image: hpcnow/slurmsimulator
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+      - slurmdbd -D -vvv
+  - name: slurmctld
+    image: hpcnow/slurmsimulator
+    volumeMounts:
+    - name: html
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+      - sacctmgr -i create cluster simulator;
+        slurmctld -D -vvv

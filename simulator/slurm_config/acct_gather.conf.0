@@ -1,0 +1,8 @@
+###
+# Slurm acct_gather configuration file
+###
+ProfileHDF5Dir=/scratch/profiling
+#ProfileHDF5Default=Network,Task
+ProfileHDF5Default=Task
+# Parameters for AcctGatherInfiniband/ofed plugin
+#InfinibandOFEDPort=1
